@@ -1,0 +1,33 @@
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+mlruns/
+
+# Data Artifacts (Internal Storage)
+data/raw/*
+data/processed/*
+data/sec_filings/*
+data/graph_models/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Models & Reports 
+# Consistently ignoring all JSON, CSV, PNG, and PKL research outputs
+models/*.pkl
+reports/**/*.json
+reports/**/*.png
+reports/**/*.csv
+!reports/.gitkeep
+
+# Environment
+.env
+.venv/
+env/
+venv/
+bin/
+
+# Temporary
+*.log
+tmp/

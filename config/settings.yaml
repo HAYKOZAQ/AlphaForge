@@ -1,0 +1,204 @@
+seed: 42
+dates:
+  sector_start: '2015-01-01'
+  sp500_start: '2018-01-01'
+  fred_start: '2015-01-01'
+  firm_val_start: '2022-01-01'
+  firm_test_start: '2023-01-01'
+  backtest_start_year: 2023
+universe:
+  sectors:
+  - XLK
+  - XLF
+  - XLE
+  - XLV
+  - XLI
+  - XLY
+  - XLP
+  - XLU
+  - XLB
+  - XLC
+  - XLRE
+  sec_focus_tickers:
+  - AAPL
+  - ABBV
+  - ABT
+  - ACN
+  - ADBE
+  - AMAT
+  - AMD
+  - AMGN
+  - AMT
+  - AMZN
+  - AVGO
+  - AXP
+  - BA
+  - BAC
+  - BK
+  - BKNG
+  - BLK
+  - BMY
+  - BRK-B
+  - C
+  - CAT
+  - CL
+  - CMCSA
+  - COF
+  - COP
+  - COST
+  - CRM
+  - CSCO
+  - CVS
+  - CVX
+  - DE
+  - DHR
+  - DIS
+  - DUK
+  - EMR
+  - FDX
+  - GD
+  - GE
+  - GEV
+  - GILD
+  - GM
+  - GOOG
+  - GOOGL
+  - GS
+  - HD
+  - HON
+  - IBM
+  - INTC
+  - INTU
+  - ISRG
+  - JNJ
+  - JPM
+  - KO
+  - LIN
+  - LLY
+  - LMT
+  - LOW
+  - LRCX
+  - MA
+  - MCD
+  - MDLZ
+  - MDT
+  - META
+  - MMM
+  - MO
+  - MRK
+  - MS
+  - MSFT
+  - MU
+  - NEE
+  - NFLX
+  - NKE
+  - NOW
+  - NVDA
+  - ORCL
+  - PEP
+  - PFE
+  - PG
+  - PLTR
+  - PM
+  - QCOM
+  - RTX
+  - SBUX
+  - SCHW
+  - SO
+  - SPG
+  - T
+  - TMO
+  - TMUS
+  - TSLA
+  - TXN
+  - UBER
+  - UNH
+  - UNP
+  - UPS
+  - USB
+  - V
+  - VZ
+  - WFC
+  - WMT
+  - XOM
+modeling:
+  production_model: model_C
+  walk_forward:
+    retrain_frequency: M
+    min_train_size: 60
+    val_size: 2
+  xgb_params:
+    n_estimators: 200
+    max_depth: 4
+    learning_rate: 0.03
+    subsample: 0.8
+    colsample_bytree: 0.8
+    eval_metric: logloss
+    early_stopping_rounds: 15
+nlp:
+  themes:
+    ai_adoption:
+    - ai
+    - intelligence
+    - automation
+    - cloud
+    - data center
+    - algorithm
+    policy_support:
+    - subsidy
+    - grant
+    - incentive
+    - regulation
+    - tax
+    - government
+    capex_intent:
+    - expansion
+    - capacity
+    - capex
+    - expenditure
+    - rollout
+    uncertainty:
+    - risk
+    - litigation
+    - lawsuit
+    - uncertainty
+    - warning
+  sentiment:
+    positive:
+    - up
+    - gain
+    - jump
+    - rise
+    - beat
+    - growth
+    - upgrade
+    - bull
+    negative:
+    - down
+    - loss
+    - drop
+    - fall
+    - miss
+    - decline
+    - downgrade
+    - bear
+  sec_parser:
+    model: all-MiniLM-L6-v2
+    snippet_start: 2000
+    snippet_end: 7000
+    n_clusters: 5
+graph:
+  similarity_threshold: 0.55
+features:
+  quant_windows:
+  - 21
+  - 63
+  - 126
+targets:
+  horizon_months: 3
+  top_n_percentile: 0.3
+  weights:
+    rel_ret: 0.35
+    turnover: 0.25
+    momentum: 0.2
+    themes: 0.2

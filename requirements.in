@@ -29,3 +29,6 @@ pip-tools
 
 jupyter
 seaborn
+hmmlearn
+prefect
+dowhy

@@ -644,9 +644,9 @@ pytz==2026.1.post1
     #   yfinance
 pyvis==0.3.2
     # via -r requirements.in
-pywin32==311
+pywin32==311 ; sys_platform == 'win32'
     # via docker
-pywinpty==3.0.3
+pywinpty==3.0.3 ; sys_platform == 'win32'
     # via
     #   jupyter-server
     #   jupyter-server-terminals

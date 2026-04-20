@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
 import numpy as np
-from src.graph_builder import build_similarity_graph
+from src.graph_builder import build_multi_layer_graph
 
 def test_graph_generation_logic():
     # Mock embedding data
@@ -13,7 +13,8 @@ def test_graph_generation_logic():
     df = pd.DataFrame(data)
     
     # Threshold 0.8: AAPL-MSFT should link, GOOG isolated
-    G = build_similarity_graph(df, threshold=0.8)
+    # Use alpha=1.0 to focus on semantic similarity for this test
+    G = build_multi_layer_graph(df, pd.DataFrame(), pd.DataFrame(), threshold=0.8, alpha=1.0, beta=0.0, gamma=0.0)
     
     assert G.number_of_nodes() == 3
     assert G.has_edge("AAPL", "MSFT")
